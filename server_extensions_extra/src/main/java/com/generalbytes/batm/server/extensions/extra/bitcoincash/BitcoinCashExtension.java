@@ -17,11 +17,8 @@
  ************************************************************************************/
 package com.generalbytes.batm.server.extensions.extra.bitcoincash;
 
-import com.generalbytes.batm.server.extensions.AbstractExtension;
-import com.generalbytes.batm.server.extensions.Currencies;
-import com.generalbytes.batm.server.extensions.ICryptoAddressValidator;
-import com.generalbytes.batm.server.extensions.IPaperWalletGenerator;
-import com.generalbytes.batm.server.extensions.IWallet;
+import com.generalbytes.batm.server.extensions.*;
+import com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.coinmate_bch.CoinmateExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.wallets.BATMBitcoinCashdRPCWallet;
 
 import java.util.HashSet;
@@ -60,6 +57,25 @@ public class BitcoinCashExtension extends AbstractExtension {
                     String rpcURL = protocol + "://" + username + ":" + password + "@" + hostname + ":" + port;
                     return new BATMBitcoinCashdRPCWallet(rpcURL, accountName, Currencies.BCH);
                 }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public IExchange createExchange(String paramString) {
+        if ((paramString != null) && (!paramString.trim().isEmpty()))
+        {
+            StringTokenizer paramTokenizer = new StringTokenizer(paramString, ":");
+            String prefix = paramTokenizer.nextToken();
+
+            if ("coinmate".equalsIgnoreCase(prefix)) {
+                String clientId = paramTokenizer.nextToken();
+                String publicKey = paramTokenizer.nextToken();
+                String privateKey = paramTokenizer.nextToken();
+                String preferredFiatCurrency = Currencies.EUR;
+
+                return new CoinmateExchange(clientId, publicKey, privateKey, preferredFiatCurrency);
             }
         }
         return null;
