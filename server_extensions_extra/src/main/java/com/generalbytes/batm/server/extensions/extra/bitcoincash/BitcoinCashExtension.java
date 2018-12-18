@@ -20,6 +20,8 @@ package com.generalbytes.batm.server.extensions.extra.bitcoincash;
 import com.generalbytes.batm.server.extensions.*;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.coinmate_bch.CoinmateExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.wallets.BATMBitcoinCashdRPCWallet;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +30,7 @@ import java.util.StringTokenizer;
 public class BitcoinCashExtension extends AbstractExtension {
 //    private static final CryptoCurrencyDefinition DEFINITION = new BitcoinCashDefinition();
     public static final String CURRENCY = Currencies.BCH;
+    private static final Logger log = LoggerFactory.getLogger("BitcoinCashExtension");
 
     @Override
     public String getName() {
@@ -68,8 +71,9 @@ public class BitcoinCashExtension extends AbstractExtension {
         {
             StringTokenizer paramTokenizer = new StringTokenizer(paramString, ":");
             String prefix = paramTokenizer.nextToken();
+            log.debug("paramString: " + paramString);
 
-            if ("coinmate".equalsIgnoreCase(prefix)) {
+            if ("coinmate_bch".equalsIgnoreCase(prefix)) {
                 String clientId = paramTokenizer.nextToken();
                 String publicKey = paramTokenizer.nextToken();
                 String privateKey = paramTokenizer.nextToken();

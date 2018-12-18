@@ -69,3 +69,13 @@ verifyModule 'org.web3j:tuples:3.6.0:73e0917ddfd55af676149ba369beeed609a7f1ce606
 verifyModule 'org.web3j:utils:3.6.0:82f33449d2970e402b2634931d51837112b4d5f8f0feaa0488b89a7107ce21df'
 verifyModule ':batm-ext-decent::36189ce1a49886840884d6543b76c03f778e1aa4019213bcfa6c711c24797403'
 verifyModule 'org.knowm.xchange:xchange-coinmate:4.2.3:6aa385e930d49b53a1fd9ef8a682b13d233fbfa20d67ef18a866f8feb4235962'
+verifyModule 'commons-io:commons-io:2.6:f877d304660ac2a142f3865badfc971dec7ed73c747c7f8d5d2f5139ca736513'
+verifyModule 'org.apache.commons:commons-lang3:3.7:6e8dc31e046508d9953c96534edf0c2e0bfe6f468966b5b842b3f87e43b6a847'
+verifyModule 'org.knowm.xchange:xchange-bitfinex:4.3.3:be87acb612658ff32dd37c71b36216cb26fc3a4cf4d9a48588297a3b1dca18a6'
+verifyModule 'org.knowm.xchange:xchange-bittrex:4.3.3:79745c6c55d96d99b6c37514be4f3ce7e7e31f54affb371b724e06c33f3b8b2e'
+verifyModule 'org.knowm.xchange:xchange-coinmate:4.3.3:c9dec9975bcda875dd23137b9f038861af10e57e5c7e45d66bb71b13785a32c7'
+verifyModule 'org.knowm.xchange:xchange-core:4.3.3:af6eb36dd161f9cb9dfa268cdba671a29d40fcce684bff4f3ba080deb0bd8438'
+verifyModule 'org.knowm.xchange:xchange-hitbtc:4.3.3:7aca6d9cba9c661ac8b0c41e51db8755e0f030690f31afdd4b4b387305c8a383'
+verifyModule 'org.knowm.xchange:xchange-itbit:4.3.3:2e5392dbe3f94eafa9b7021e5ab748d980e690587e905458079c7fc03f99edc3'
+
+

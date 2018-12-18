@@ -661,7 +661,7 @@ public class BitfinexExchange implements IExchangeAdvanced, IRateSourceAdvanced 
 //            log.debug("Selected asks:");
             for (LimitOrder ask : asks) {
 //                log.debug("ask = " + ask);
-                asksTotal = asksTotal.add(ask.getTradableAmount());
+                asksTotal = asksTotal.add(ask.getOriginalAmount());
                 if (targetAmount.compareTo(asksTotal) <= 0) {
                     tradableLimit = ask.getLimitPrice();
                     break;
@@ -709,7 +709,7 @@ public class BitfinexExchange implements IExchangeAdvanced, IRateSourceAdvanced 
             });
 
             for (LimitOrder bid : bids) {
-                bidsTotal = bidsTotal.add(bid.getTradableAmount());
+                bidsTotal = bidsTotal.add(bid.getOriginalAmount());
                 if (targetAmount.compareTo(bidsTotal) <= 0) {
                     tradableLimit = bid.getLimitPrice();
                     break;
