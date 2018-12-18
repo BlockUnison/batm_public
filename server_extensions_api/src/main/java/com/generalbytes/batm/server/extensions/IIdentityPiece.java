@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (C) 2014-2016 GENERAL BYTES s.r.o. All rights reserved.
+ * Copyright (C) 2015 GENERAL BYTES s.r.o. All rights reserved.
  *
  * This software may be distributed and modified under the terms of the GNU
  * General Public License version 2 (GPL2) as published by the Free Software
@@ -18,29 +18,29 @@
 package com.generalbytes.batm.server.extensions;
 
 import java.util.Date;
-import java.util.List;
 
-public interface ITerminal {
-    int TYPE_PHYSICAL = 0;
-    int TYPE_VIRTUAL = 1;
+public interface IIdentityPiece {
+    int TYPE_FINGERPRINT = 0;
+    int TYPE_EMAIL = 1;
+    int TYPE_ID_SCAN = 2;
+    int TYPE_PERSONAL_INFORMATION = 3;
+    int TYPE_CELLPHONE = 4;
+    int TYPE_SELFIE = 5;
+    int TYPE_CAMERA_IMAGE = 6;
 
-    Integer getType();
-    String getSerialNumber();
-    String getName();
-    boolean isActive();
-    ILocation getLocation();
-    Date getConnectedAt();
-    Date getLastPingAt();
-    long getLastPingDuration();
-
-    Date getExchangeRateUpdatedAt();
-    String getExchangeRatesBuy();
-    String getExchangeRatesSell();
-
-    long getErrors();
-    int getOperationalMode();
-    int getRejectedReason();
-
-    List<String> getAllowedCashCurrencies();
-    List<String> getAllowedCryptoCurrencies();
+    int getPieceType();
+    Date getCreated();
+    String getPhoneNumber();
+    String getMimeType();
+    String getFilename();
+    byte[] getData();
+    String getEmailAddress();
+    String getFirstname();
+    String getLastname();
+    String getContactAddress();
+    String getContactCity();
+    String getContactCountry();
+    String getContactZIP();
+    String getIdCardNumber();
+    IPerson getCreatedBy();
 }

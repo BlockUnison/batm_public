@@ -15,7 +15,7 @@
  * Web      :  http://www.generalbytes.com
  *
  ************************************************************************************/
-package com.generalbytes.batm.server.extensions.extra.watchlists.ofac;
+package com.generalbytes.batm.server.extensions.extra.watchlists.eu;
 
 public class Match {
     private String partyId;

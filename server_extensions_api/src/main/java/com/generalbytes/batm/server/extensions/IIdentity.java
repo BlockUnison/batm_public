@@ -1,5 +1,5 @@
 /*************************************************************************************
- * Copyright (C) 2014-2016 GENERAL BYTES s.r.o. All rights reserved.
+ * Copyright (C) 2015 GENERAL BYTES s.r.o. All rights reserved.
  *
  * This software may be distributed and modified under the terms of the GNU
  * General Public License version 2 (GPL2) as published by the Free Software
@@ -17,30 +17,30 @@
  ************************************************************************************/
 package com.generalbytes.batm.server.extensions;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public interface ITerminal {
-    int TYPE_PHYSICAL = 0;
-    int TYPE_VIRTUAL = 1;
+public interface IIdentity {
 
-    Integer getType();
-    String getSerialNumber();
-    String getName();
-    boolean isActive();
-    ILocation getLocation();
-    Date getConnectedAt();
-    Date getLastPingAt();
-    long getLastPingDuration();
+    int STATE_NOT_REGISTERED = 0;
+    int STATE_REGISTERED = 1;
+    int STATE_TO_BE_REGISTERED = 2;
+    int STATE_PROHIBITED = 3;
+    int STATE_ANONYMOUS = 4;
 
-    Date getExchangeRateUpdatedAt();
-    String getExchangeRatesBuy();
-    String getExchangeRatesSell();
-
-    long getErrors();
-    int getOperationalMode();
-    int getRejectedReason();
-
-    List<String> getAllowedCashCurrencies();
-    List<String> getAllowedCryptoCurrencies();
+    boolean isNew();
+    String getPublicId();
+    int getState();
+    Date getCreated();
+    Date getRegistered();
+    String getCreatedByTerminalSerialNumber();
+    IPerson getRegisteredBy();
+    BigDecimal getVipBuyDiscount();
+    BigDecimal getVipSellDiscount();
+    Date getLastUpdatedAt();
+    Date getWatchListLastScanAt();
+    boolean isWatchListBanned();
+    String getNote();
+    List<IIdentityPiece> getIdentityPieces();
 }

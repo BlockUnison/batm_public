@@ -15,21 +15,17 @@
  * Web      :  http://www.generalbytes.com
  *
  ************************************************************************************/
+package com.generalbytes.batm.server.extensions.extra.watchlists.eu;
 
-package com.generalbytes.batm.server.extensions.extra.watchlists.ofac;
-
-
+import com.generalbytes.batm.server.extensions.extra.watchlists.eu.tags.ExportType;
 import com.generalbytes.batm.server.extensions.watchlist.IWatchList;
+import com.generalbytes.batm.server.extensions.watchlist.WatchListMatch;
 import com.generalbytes.batm.server.extensions.watchlist.WatchListQuery;
 import com.generalbytes.batm.server.extensions.watchlist.WatchListResult;
-import com.generalbytes.batm.server.extensions.watchlist.WatchListMatch;
-import com.generalbytes.batm.server.extensions.extra.watchlists.ofac.tags.Sanctions;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,14 +35,19 @@ import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
-public class OFACWatchList implements IWatchList{
-    private static final Logger log = LoggerFactory.getLogger("batm.master.watchlist.OFAC");
-    private static final String DOWNLOAD_URL = "https://www.treasury.gov/ofac/downloads/sanctions/1.0/sdn_advanced.xml";
+public class EUSanctionsList implements IWatchList {
+    private static final Logger log = LoggerFactory.getLogger("batm.master.watchlist.EUSanctionsList");
+
+    private static final String DOWNLOAD_URL = "https://webgate.ec.europa.eu/europeaid/fsd/fsf/public/files/xmlFullSanctionsList_1_1/content";
+    private static final String TOKEN = "n002frsg";
     private String downloadDirectory;
 
-    // more information here: https://www.treasury.gov/resource-center/sanctions/SDN-List/Pages/default.aspx
-    // and here: https://www.treasury.gov/resource-center/sanctions/SDN-List/Pages/sdn_advanced.aspx
+    // More information here: https://webgate.ec.europa.eu/europeaid/fsd/fsf
+    // after login clink on: Show settings for crawler/robot
 
 
     private ParsedSanctions sanctions;
@@ -55,7 +56,7 @@ public class OFACWatchList implements IWatchList{
 
     @Override
     public String getName() {
-        return "OFAC - Specially Designated Nationals List";
+        return "EU - Financial Sanctions";
     }
 
     @Override
@@ -84,10 +85,10 @@ public class OFACWatchList implements IWatchList{
         if (!watchlistsDir.exists()) {
             watchlistsDir.mkdirs();
         }
-        log.debug("Downloading OFAC SDN watch list...");
-        final File finalFile = new File(watchlistsDir, "ofac_sdn_advanced.xml");
-        final File downloadToFile = new File(watchlistsDir, "ofac_sdn_advanced.xml.download");
-        final boolean res = downloadFile(DOWNLOAD_URL, downloadToFile);
+        log.debug("Downloading EU Financial Sanctions watch list...");
+        final File finalFile = new File(watchlistsDir, "eu_sanctions.xml");
+        final File downloadToFile = new File(watchlistsDir, "eu_sanctions.xml.download");
+        final boolean res = downloadFile(DOWNLOAD_URL + "?token=" +TOKEN, downloadToFile);
         if (res) {
             boolean changed = true;
             if (downloadToFile.exists() && finalFile.exists()) {
@@ -115,10 +116,10 @@ public class OFACWatchList implements IWatchList{
     private boolean checkParsing(File downloadToFile) {
         log.debug("Parsing " + downloadToFile.getAbsolutePath() + "...");
         try {
-            JAXBContext jc = JAXBContext.newInstance(Sanctions.class);
+            JAXBContext jc = JAXBContext.newInstance(ExportType.class);
 
             Unmarshaller unmarshaller = jc.createUnmarshaller();
-            Sanctions sanctions = (Sanctions) unmarshaller.unmarshal(downloadToFile);
+            ExportType sanctions = (ExportType) unmarshaller.unmarshal(downloadToFile);
             if (sanctions != null) {
                 return true;
             }
@@ -151,7 +152,7 @@ public class OFACWatchList implements IWatchList{
             final ArrayList<WatchListMatch> matches = new ArrayList<WatchListMatch>();
             for (Match match : result) {
                 final String partyIndex = sanctions.getPartyIndexByPartyId(match.getPartyId());
-                matches.add(new WatchListMatch(match.getScore(),"Matched OFAC SDN Number: " + match.getPartyId() + " partyIndex: "+ partyIndex + ". For more details click <a href=\'https://sanctionssearch.ofac.treas.gov\'>here</a>.",getName()));
+                matches.add(new WatchListMatch(match.getScore(),"Matched EU Sanctions Number: " + match.getPartyId() + " partyIndex: "+ partyIndex + ". For more details click <a href=\'https://www.sanctionsmap.eu\'>here</a>.",getName()));
             }
             return new WatchListResult(matches);
         }
@@ -160,13 +161,13 @@ public class OFACWatchList implements IWatchList{
     private ParsedSanctions parseSanctionsList() {
         final String watchlistsLocation = downloadDirectory;
         File watchlistsDir = new File(watchlistsLocation);
-        final File finalFile = new File(watchlistsDir, "ofac_sdn_advanced.xml");
+        final File finalFile = new File(watchlistsDir, "eu_sanctions.xml");
         if (finalFile.exists()) {
             try {
-                JAXBContext jc = JAXBContext.newInstance(Sanctions.class);
+                JAXBContext jc = JAXBContext.newInstance(ExportType.class);
 
                 Unmarshaller unmarshaller = jc.createUnmarshaller();
-                Sanctions temporary  = (Sanctions) unmarshaller.unmarshal(finalFile);
+                ExportType temporary  = (ExportType) unmarshaller.unmarshal(finalFile);
                 return ParsedSanctions.parse(temporary);
 
             } catch (JAXBException e) {
