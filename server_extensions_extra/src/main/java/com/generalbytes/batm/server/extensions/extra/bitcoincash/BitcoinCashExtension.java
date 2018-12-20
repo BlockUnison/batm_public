@@ -18,6 +18,8 @@
 package com.generalbytes.batm.server.extensions.extra.bitcoincash;
 
 import com.generalbytes.batm.server.extensions.*;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchange;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchangeAlt;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.coinmate_bch.CoinmateExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.wallets.BATMBitcoinCashdRPCWallet;
 import org.slf4j.Logger;
@@ -66,7 +68,16 @@ public class BitcoinCashExtension extends AbstractExtension {
     }
 
     @Override
+    public IRateSource createRateSource(String paramString) {
+        return createXChange(paramString);
+    }
+
+    @Override
     public IExchange createExchange(String paramString) {
+        return createXChange(paramString);
+    }
+
+    private XChangeExchangeAlt createXChange(String paramString) {
         if ((paramString != null) && (!paramString.trim().isEmpty()))
         {
             StringTokenizer paramTokenizer = new StringTokenizer(paramString, ":");

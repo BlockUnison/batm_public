@@ -21,7 +21,6 @@
 package com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.itbit;
 
 import com.generalbytes.batm.server.extensions.Currencies;
-import com.generalbytes.batm.server.extensions.Currencies;
 import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchange;
 import org.knowm.xchange.ExchangeSpecification;
 import org.knowm.xchange.dto.account.AccountInfo;

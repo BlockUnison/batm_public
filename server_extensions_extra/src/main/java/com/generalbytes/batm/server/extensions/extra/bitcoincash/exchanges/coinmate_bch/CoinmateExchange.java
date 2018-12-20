@@ -1,16 +1,16 @@
 package com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.coinmate_bch;
 
 import com.generalbytes.batm.server.extensions.Currencies;
-import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchange;
-import org.knowm.xchange.ExchangeSpecification;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchangeAlt;
+import org.knowm.xchange.alt.ExchangeSpecification;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class CoinmateExchange extends XChangeExchange {
+public class CoinmateExchange extends XChangeExchangeAlt {
 
     private static ExchangeSpecification getDefaultSpecification() {
-        return new org.knowm.xchange.coinmate.CoinmateExchange().getDefaultExchangeSpecification();
+        return new org.knowm.xchange.alt.coinmate.CoinmateExchange().getDefaultExchangeSpecification();
     }
 
     public CoinmateExchange(String clientId, String publicKey, String privateKey, String preferredFiatCurrency) {

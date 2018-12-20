@@ -243,7 +243,7 @@ public abstract class XChangeExchange implements IExchangeAdvanced, IRateSourceA
 
             LimitOrder order = new LimitOrder.Builder(Order.OrderType.BID, currencyPair)
                     .limitPrice(ticker.getAsk())
-                    .originalAmount(amount)
+                    .tradableAmount(amount)
                     .build();
             log.debug("limitOrder = {}", order);
 
@@ -557,7 +557,7 @@ public abstract class XChangeExchange implements IExchangeAdvanced, IRateSourceA
                 Ticker ticker = marketService.getTicker(currencyPair);
                 LimitOrder order = new LimitOrder.Builder(Order.OrderType.BID, currencyPair)
                         .limitPrice(ticker.getAsk())
-                        .originalAmount(amount)
+                        .tradableAmount(amount)
                         .build();
 
                 log.debug("limitOrder = {}", order);

@@ -205,6 +205,13 @@
             <cryptocurrency>BTC</cryptocurrency>
             <cryptocurrency>BCH</cryptocurrency>
         </exchange>
+        <ratesource prefix="coinmate_bch" name="Coinmate Rate Source">
+            <param name="clientId" />
+            <param name="publicKey" />
+            <param name="privateKey" />
+            <cryptocurrency>BTC</cryptocurrency>
+            <cryptocurrency>BCH</cryptocurrency>
+        </ratesource>
         <cryptologo cryptocurrency="BCH" file="bch.png"/>
         <cryptologo cryptocurrency="BCH" file="bch.svg"/>
     </extension>
