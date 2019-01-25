@@ -62,6 +62,7 @@
             </ratesource>
             <ratesource prefix="coinmarketcap" name ="CoinMarketCap.com" >
                 <param name="fiatcurrency" />
+                <param name="api_key" />
                 <cryptocurrency>BTC</cryptocurrency>
                 <cryptocurrency>LINDA</cryptocurrency>
                 <cryptocurrency>SYS</cryptocurrency>
@@ -89,6 +90,51 @@
                 <cryptocurrency>XZC</cryptocurrency>
                 <cryptocurrency>CLOAK</cryptocurrency>
                 <cryptocurrency>FLASH</cryptocurrency>
+            </ratesource>
+            <ratesource prefix="fixprice" name ="Fix Price Universal" >
+                <param name="fiatcurrency" />
+                <cryptocurrency>BTC</cryptocurrency>
+                <cryptocurrency>BCH</cryptocurrency>
+                <cryptocurrency>BTCP</cryptocurrency>
+                <cryptocurrency>BTX</cryptocurrency>
+                <cryptocurrency>BSD</cryptocurrency>
+                <cryptocurrency>BTDX</cryptocurrency>
+                <cryptocurrency>BURST</cryptocurrency>
+                <cryptocurrency>CLOAK</cryptocurrency>
+                <cryptocurrency>ECA</cryptocurrency>
+                <cryptocurrency>ETH</cryptocurrency>
+                <cryptocurrency>EFL</cryptocurrency>
+                <cryptocurrency>LTC</cryptocurrency>
+                <cryptocurrency>LSK</cryptocurrency>
+                <cryptocurrency>VIA</cryptocurrency>
+                <cryptocurrency>DEX</cryptocurrency>
+                <cryptocurrency>DAI</cryptocurrency>
+                <cryptocurrency>DASH</cryptocurrency>
+                <cryptocurrency>DGB</cryptocurrency>
+                <cryptocurrency>DOGE</cryptocurrency>
+                <cryptocurrency>FLASH</cryptocurrency>
+                <cryptocurrency>FTO</cryptocurrency>
+                <cryptocurrency>MAX</cryptocurrency>
+                <cryptocurrency>MEC</cryptocurrency>
+                <cryptocurrency>LEO</cryptocurrency>
+                <cryptocurrency>LINDA</cryptocurrency>
+                <cryptocurrency>NLG</cryptocurrency>
+                <cryptocurrency>GRS</cryptocurrency>
+                <cryptocurrency>ICG</cryptocurrency>
+                <cryptocurrency>NBT</cryptocurrency>
+                <cryptocurrency>NXT</cryptocurrency>
+                <cryptocurrency>PAC</cryptocurrency>
+                <cryptocurrency>POT</cryptocurrency>
+                <cryptocurrency>SMART</cryptocurrency>
+                <cryptocurrency>START</cryptocurrency>
+                <cryptocurrency>SUM</cryptocurrency>
+                <cryptocurrency>SYS</cryptocurrency>
+                <cryptocurrency>TKN</cryptocurrency>
+                <cryptocurrency>WDC</cryptocurrency>
+                <cryptocurrency>XMR</cryptocurrency>
+                <cryptocurrency>ANON</cryptocurrency>
+                <cryptocurrency>USDT</cryptocurrency>
+                <cryptocurrency>XZC</cryptocurrency>
             </ratesource>
             <paymentprocessor prefix="bitcoinpay" name="BitcoinPay.com" >
                 <param name="apikey" />
@@ -580,6 +626,9 @@
             <param name="accountname" />
             <cryptocurrency>SUM</cryptocurrency>
         </wallet>
+        <ratesource prefix="sumcoinindex" name="Sumcoinindex" >
+            <cryptocurrency>SUM</cryptocurrency>
+        </ratesource>
         <ratesource prefix="sumfix" name ="Fix Price" >
             <param name="price" />
             <cryptocurrency>SUM</cryptocurrency>
@@ -790,6 +839,7 @@
         </ratesource>
         <ratesource prefix="binanceRateSource" name ="Binance Rate Source" >
             <param name="fiatCurrency" />
+            <param name="coinmarketcapApiKey"/>
             <cryptocurrency>LSK</cryptocurrency>
             <cryptocurrency>BTC</cryptocurrency>
             <cryptocurrency>LTC</cryptocurrency>
@@ -864,4 +914,5 @@
     </extension>
     <!--<extension class="com.generalbytes.batm.server.extensions.extra.examples.TransactionExtension" />-->
     <!--<extension class="com.generalbytes.batm.server.extensions.extra.examples.rest.RESTExampleExtension" />-->
+    <extension class="com.generalbytes.batm.server.extensions.extra.examples.chat.ChatBotExtensionExample" />
 </extensions>

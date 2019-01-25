@@ -65,11 +65,16 @@ public class HitbtcExchange extends XChangeExchange {
         return 10;
     }
 
+    @Override
+    public Wallet getWallet(AccountInfo accountInfo, String fiatCurrency) {
+        return accountInfo.getWallet(null); // HitBTC creates only one wallet with key=null
+    }
+
 //    public static void main(String[] args) {
 //        HitbtcExchange xch = new HitbtcExchange("", "", "USD");
-//        System.out.println(xch.getDepositAddress("XMR"));
-//        System.out.println(xch.getExchangeRateForSell("XMR", "USD"));
-//        //System.out.println(xch.sellCoins(BigDecimal.TEN, "XMR", "USD", ""));
-//        System.out.println(xch.sendCoins("86didNu7QQdJvm1CAxpUCy9rJr7AcRLdz1xzSMEFio8DVknAu3PoLkY7VNoDBFdM2ZZ4kzfKyrHEUHrjRauXwSZGJ7SA7Ki", BigDecimal.TEN, "XMR", ""));
+//        log.info(xch.getDepositAddress("XMR"));
+//        log.info(xch.getExchangeRateForSell("XMR", "USD"));
+//        //log.info(xch.sellCoins(BigDecimal.TEN, "XMR", "USD", ""));
+//        log.info(xch.sendCoins("86didNu7QQdJvm1CAxpUCy9rJr7AcRLdz1xzSMEFio8DVknAu3PoLkY7VNoDBFdM2ZZ4kzfKyrHEUHrjRauXwSZGJ7SA7Ki", BigDecimal.TEN, "XMR", ""));
 //    }
 }
