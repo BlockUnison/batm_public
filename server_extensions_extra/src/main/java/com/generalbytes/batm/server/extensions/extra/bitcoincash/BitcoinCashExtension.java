@@ -18,10 +18,10 @@
 package com.generalbytes.batm.server.extensions.extra.bitcoincash;
 
 import com.generalbytes.batm.server.extensions.*;
-import com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.bch_coinmate.CoinmateXChangeExchange;
-import com.generalbytes.batm.server.extensions.extra.bitcoincash.sources.bch_coinmate.CoinmateXChangeRateSource;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchange;
+import com.generalbytes.batm.server.extensions.extra.bitcoin.exchanges.XChangeExchangeAlt;
+import com.generalbytes.batm.server.extensions.extra.bitcoincash.exchanges.coinmate_bch.CoinmateExchange;
 import com.generalbytes.batm.server.extensions.extra.bitcoincash.wallets.BATMBitcoinCashdRPCWallet;
-import com.generalbytes.batm.server.extensions.extra.coinmate.CoinmateLoginInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -69,21 +69,15 @@ public class BitcoinCashExtension extends AbstractExtension {
 
     @Override
     public IRateSource createRateSource(String paramString) {
-        CoinmateLoginInfo loginInfo = parseLoginInfo(paramString);
-        if (loginInfo != null) {
-            return new CoinmateXChangeRateSource(loginInfo);
-        } else return null;
+        return createXChange(paramString);
     }
 
     @Override
     public IExchange createExchange(String paramString) {
-        CoinmateLoginInfo loginInfo = parseLoginInfo(paramString);
-        if (loginInfo != null) {
-            return new CoinmateXChangeExchange(loginInfo);
-        } else return null;
+        return createXChange(paramString);
     }
 
-    private CoinmateLoginInfo parseLoginInfo(String paramString) {
+    private XChangeExchangeAlt createXChange(String paramString) {
         if ((paramString != null) && (!paramString.trim().isEmpty()))
         {
             StringTokenizer paramTokenizer = new StringTokenizer(paramString, ":");
@@ -96,7 +90,7 @@ public class BitcoinCashExtension extends AbstractExtension {
                 String privateKey = paramTokenizer.nextToken();
                 String preferredFiatCurrency = Currencies.EUR;
 
-                return new CoinmateLoginInfo(clientId, publicKey, privateKey);
+                return new CoinmateExchange(clientId, publicKey, privateKey, preferredFiatCurrency);
             }
         }
         return null;
