@@ -13,6 +13,24 @@ dependencies {
     compile project(':server_extensions_extra');
     compile(group: 'net.sf.jopt-simple', name: 'jopt-simple', version: '4.9')
     runtime(group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25')
+
+    // scala libs
+    runtime('org.scala-lang:scala-library:2.12.6')
+    runtime('org.typelevel:cats-core_2.12:1.4.0')
+    runtime('org.typelevel:cats-effect_2.12:1.0.0')
+    runtime('com.chuusai:shapeless_2.12:2.3.3')
+    runtime('com.github.cb372:cats-retry-core_2.12:0.2.0')
+    runtime('com.github.cb372:cats-retry-cats-effect_2.12:0.2.0')
+    runtime('org.http4s:http4s-dsl_2.12:0.19.0')
+    runtime('org.http4s:http4s-core_2.12:0.19.0')
+    runtime('org.http4s:http4s-client_2.12:0.19.0')
+    runtime('org.http4s:http4s-blaze-client_2.12:0.19.0')
+    runtime('org.http4s:http4s-circe_2.12:0.19.0')
+    runtime('io.circe:circe-core_2.12:0.10.1')
+    runtime('io.circe:circe-generic_2.12:0.10.1')
+    runtime('io.circe:circe-parser_2.12:0.10.1')
+    runtime('com.github.julien-truffaut:monocle-core_2.12:1.5.0-cats')
+    runtime('com.github.julien-truffaut:monocle-macro_2.12:1.5.0-cats')
 }
 
 dependencySubstitutions {

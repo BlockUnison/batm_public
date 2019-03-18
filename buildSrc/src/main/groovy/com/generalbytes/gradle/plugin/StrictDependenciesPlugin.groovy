@@ -56,7 +56,7 @@ class StrictDependenciesPlugin implements Plugin<Project> {
             project.configurations.all { Configuration it ->
                 if (!shouldSkip(it)) {
                     resolutionStrategy {
-                        failOnVersionConflict()
+//                        failOnVersionConflict()
                         logger.debug("failOnVersionConflict() resolution strategy set for configuration ${it}.")
                     }
                 }
